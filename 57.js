@@ -1,11 +1,13 @@
 //Problem 57
 //Square Roots Convergents
 
-let numerator = 2
-let denominator = 1
+const myFunctions = require('./functions')
+let top = [2]
+let bottom = [1]
 let count = 0
 let tempN
 let max = 1000
+let remainder
 
 function countDigits(n) {
     let c = 0
@@ -19,15 +21,15 @@ function countDigits(n) {
 
 
 for (let i = 1; i <= max; i ++) {
-    let remainder = denominator + numerator
-    if (countDigits(remainder) > countDigits(denominator)) {
+    remainder = myFunctions.arrayAdd(bottom, top)
+    if (remainder.length > bottom.length) {
         count ++
     }
-    tempN = denominator + 2 * numerator
-    denominator = numerator
-    numerator = tempN
+    tempN = myFunctions.arrayAdd(bottom, myFunctions.arrayMultiply([2], top))
+    bottom = top
+    top = tempN
 }
 
 console.log(count)
-console.log(numerator)
-console.log(denominator)
+console.log(top)
+console.log(bottom)

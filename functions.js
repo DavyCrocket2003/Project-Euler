@@ -32,7 +32,9 @@ function arrayMultiply(num1, num2) {
             digitProduct.push(smallProduct % 10)
             carry = Math.floor(smallProduct / 10)
         }
-        digitProduct.push(carry)
+        if (carry > 0) {
+            digitProduct.push(carry)
+        }
         result = arrayAdd(result, digitProduct)
     }
     return result
