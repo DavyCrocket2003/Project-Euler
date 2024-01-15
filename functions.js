@@ -45,23 +45,21 @@ function arrayMultiply(num1, num2) {
 
 //Function that generates a list of primes up to a given number (not optimized aka slow)
 function listPrimes(num) {
-    let candidates = Array(num + 1).fill(1)
-    let result = []
-    candidates[0] = 0
-    candidates[1] = 0
-    let mode = 2
+    let candidates = Array(Math.floor(num / 2)).fill(true)
+    let result = [2]
+    let mode = 3
     while (mode < num ** 0.5 + 1) {
-        for (let j = 2 * mode; j <= num; j += mode) {
-            candidates[j] = 0
+        for (let j = mode * mode; j <= num; j += mode) {
+            candidates[j/2 -1.5] = false
         }
-        mode ++
-        while (candidates[mode] === 0) {
-            mode ++
+        mode += 2
+        while (candidates[mode / 2 - 1.5] === 0) {
+            mode += 2
         }
     }
-    for (let i = 2; i <= num; i ++) {
-        if (candidates[i] === 1) {
-            result.push(i)
+    for (let i = 0; i < candidates.length; i ++) {
+        if (candidates[i]) {
+            result.push((i + 1.5) * 2)
         }
     }
     return result
@@ -73,7 +71,7 @@ function listPrimes(num) {
 
 
 
-// console.log(arrayMultiply([1, 2, 9, 5, 1], [7, 6, 5, 0, 9, 0]))
+// console.log(listPrimes(1000))
 module.exports = {
     arrayAdd,
     arrayMultiply,
