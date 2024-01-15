@@ -19,6 +19,8 @@ function arrayAdd(num1, num2) {
     return result
 }
 
+
+//Function that takes in two numbers whos digits are reprsented by arrays and returns the product (as an array)
 function arrayMultiply(num1, num2) {
     let digitProduct = [0]
     let carry = 0
@@ -41,9 +43,39 @@ function arrayMultiply(num1, num2) {
 
 }
 
+//Function that generates a list of primes up to a given number (not optimized aka slow)
+function listPrimes(num) {
+    let candidates = Array(num + 1).fill(1)
+    let result = []
+    candidates[0] = 0
+    candidates[1] = 0
+    let mode = 2
+    while (mode < num ** 0.5 + 1) {
+        for (let j = 2 * mode; j <= num; j += mode) {
+            candidates[j] = 0
+        }
+        mode ++
+        while (candidates[mode] === 0) {
+            mode ++
+        }
+    }
+    for (let i = 2; i <= num; i ++) {
+        if (candidates[i] === 1) {
+            result.push(i)
+        }
+    }
+    return result
+    
+}
+
+
+
+
+
 
 // console.log(arrayMultiply([1, 2, 9, 5, 1], [7, 6, 5, 0, 9, 0]))
 module.exports = {
     arrayAdd,
-    arrayMultiply
+    arrayMultiply,
+    listPrimes
 }
