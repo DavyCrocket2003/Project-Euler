@@ -132,8 +132,8 @@ function bigPrimes(n) {
     let low = hundredMillion
     let high
     while (low <= n) {
-        high = Math.min(low + hundredMillion, n)
-        primeList.concat(primeSearch(low, high, primeList))
+        high = Math.min(low + hundredMillion - 1, n)
+        primeList = primeList.concat(primeSearch(low, high, primeList))
         low += hundredMillion
     }
     return primeList
@@ -155,12 +155,13 @@ module.exports = {
 
 
 // debug stuff
-// let list = listPrimes(100)
-// console.log(primeSearch(100, 200, list))
+let list = listPrimes(1000)
+console.log(primeSearch(100, 200, list))
 
 
-// for (let i = 100; i < 1000; i += 100) {
-//     list = list.concat(primeSearch(i, i + 100, list))
-// }
-// process.stdout.write(JSON.stringify(list) + '\n')
-// console.log(list.length)
+for (let i = 1000; i < 10000; i += 1000) {
+    list = list.concat(primeSearch(i, i + 1000, list))
+}
+process.stdout.write(JSON.stringify(list) + '\n')
+console.log(list.length)
+// console.log(bigPrimes(1000000000).length)
