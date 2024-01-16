@@ -67,10 +67,10 @@ function listPrimes(num) {
 }
 
 //Function to compute the primes above 100 million
-function billionPrimes(n) {
+function bigPrimes(n) {
     let primeList = []
 
-
+    //internal function to search a given range for primes (requires prime list below given range)
     function primeSearch(low, high, givenPrimes) {
         if (low % 2 === 0) {
             low ++
@@ -78,14 +78,44 @@ function billionPrimes(n) {
         if (high % 2 === 0) {
             high --
         }
-        
-        //A eliminate multiples of givens
+        let candidates = Array((high - low) / 2 + 1).fill(true)
+        let newPrimes = []
 
+        //A eliminate odd multiples of given primes
+        for (let i = 1; i < givenPrimes.length; i ++) {
+            let p = givenPrimes[i]          //Grab prime at index i (skips 2 (i=0))
+            let p1 = p + low - (low % p)    //Set p1 to the first multiple of p within given range
+            if (p1 % 2 === 0) {
+                p1 += p                     //If p1 is even, choose the next multiple of p
+            }
+            for (let j = p1; j <= high; j += 2 * p) {
+                candidates[(j - low) / 2] = false
+            }
+        }
 
         //B walk through range collecting primes and eliminating multiples (if needed)
+        let index = 0
+        index ++
+        while (candidates[index] === false) {
+            index ++
+        }
+        while (index < candidates.length) {
+            let p = index * 2 + low
+            newPrimes.push(p)
+            //Cross out multiples of current prime
+            for (let i = 3 * p; i <= high; i += 2 * p) {
+                candidates[(i - low) / 2] = false
+            }
+            index ++
+            while (candidates[index] === false) {
+                index ++
+            }
+        }
 
         //C Return list of new primes
+        return newPrimes
     }
+
 
 }
 
@@ -98,5 +128,5 @@ module.exports = {
     arrayAdd,
     arrayMultiply,
     listPrimes,
-    billionPrimes
+    bigPrimes
 }
