@@ -66,10 +66,14 @@ function listPrimes(num) {
     
 }
 
-//Function to compute the primes above 100 million
+//Function to compute primes above 100 million
 function bigPrimes(n) {
+    let hundredMillion = 100000000
     let primeList = []
-
+    if (n <= hundredMillion) {
+        return listPrimes(n) 
+    }
+    primeList = listPrimes(hundredMillion)
     //internal function to search a given range for primes (requires prime list below given range)
     function primeSearch(low, high, givenPrimes) {
         if (low % 2 === 0) {
@@ -116,6 +120,15 @@ function bigPrimes(n) {
         return newPrimes
     }
 
+    let low = hundredMillion
+    let high
+    while (low <= n) {
+        high = Math.min(low + hundredMillion, n)
+        primeList.concat(primeSearch(low, high, primeList))
+        low += hundredMillion
+    }
+    return primeList
+
 
 }
 
@@ -123,7 +136,7 @@ function bigPrimes(n) {
 
 
 
-// console.log(listPrimes(1000))
+console.log(bigPrimes(100000000))
 module.exports = {
     arrayAdd,
     arrayMultiply,
