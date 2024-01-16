@@ -136,7 +136,7 @@ function bigPrimes(n) {
 
 
 
-console.log(bigPrimes(100000000))
+// console.log(bigPrimes(100000000))
 module.exports = {
     arrayAdd,
     arrayMultiply,
