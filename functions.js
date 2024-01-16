@@ -66,6 +66,28 @@ function listPrimes(num) {
     
 }
 
+//Function to compute the primes above 100 million
+function billionPrimes(n) {
+    let primeList = []
+
+
+    function primeSearch(low, high, givenPrimes) {
+        if (low % 2 === 0) {
+            low ++
+        }
+        if (high % 2 === 0) {
+            high --
+        }
+        
+        //A eliminate multiples of givens
+
+
+        //B walk through range collecting primes and eliminating multiples (if needed)
+
+        //C Return list of new primes
+    }
+
+}
 
 
 
@@ -75,5 +97,6 @@ function listPrimes(num) {
 module.exports = {
     arrayAdd,
     arrayMultiply,
-    listPrimes
+    listPrimes,
+    billionPrimes
 }
