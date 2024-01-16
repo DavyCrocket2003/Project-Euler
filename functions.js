@@ -49,7 +49,7 @@ function listPrimes(num) {
     let result = [2]
     let mode = 3
     while (mode < num ** 0.5 + 1) {
-        for (let j = mode * mode; j <= num; j += mode) {
+        for (let j = mode * mode; j <= num; j += 2 * mode) {
             candidates[j/2 -1.5] = false
         }
         mode += 2
