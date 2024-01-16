@@ -2,12 +2,12 @@
 
 const myFunctions = require('./functions')          //Access my functions
 
-let maxWidth = 7                                //Stop searching after this width of square
+let maxWidth = 100000                                //Stop searching after this width of square
 let primeSearch = 100000000                         //Prime search threshold. When exceeded, multiply by 2
 let primes = myFunctions.bigPrimes(primeSearch)     //Working list of primes
 function isPrime(num) {                             //Function to determine if a number is prime
     while (num > primeSearch) {
-        primeSearch *= 2
+        primeSearch *= 10
         primes = myFunctions.bigPrimes(primeSearch)
     }
     return primes.includes(num)
