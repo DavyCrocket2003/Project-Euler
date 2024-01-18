@@ -59,8 +59,14 @@ fs.readFile('./0059_cipher.txt', 'utf8', (err, data) => {
         if (decrypted) break
     }
 
+    let stringSum = 0
+    for (let i=0; i<trialText.length; i++) {
+        stringSum += trialText.charCodeAt(i)
+    }
+
     console.log(trialText)
     console.log(password)
+    console.log(stringSum)
 
 
 
